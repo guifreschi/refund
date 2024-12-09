@@ -4,6 +4,9 @@ const amount = document.querySelector("#amount")
 const expense = document.querySelector("#expense")
 const category = document.querySelector("#category")
 
+// Seleciona os elementos da lista
+const expenseList = document.querySelector('ul')
+
 // Captura o evento de input para formatar o valor
 amount.oninput = () => {
   let value = amount.value.replace(/\D/g, "")
@@ -42,7 +45,17 @@ form.onsubmit = (e) => {
 
 function expenseAdd(newExpense) {
   try {
-    
+    // Cria elementos para adicionar na lista
+    const expenseItem = document.createElement('li')
+    expenseItem.classList.add('expense')
+
+    const expenseIcon = document.createElement('img')
+    expenseIcon.setAttribute("src", `img/${newExpense.category_id}.svg`)
+    expenseIcon.setAttribute("alt", newExpense.category_name)
+
+    expenseItem.append(expenseIcon)
+    expenseList.append(expenseItem)
+
   } catch (error) {
     alert("Não foi possível atualizar a lista de despesas.")
     console.log(error)
