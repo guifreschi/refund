@@ -73,9 +73,15 @@ function expenseAdd(newExpense) {
     expenseAmount.classList.add('expense-amount')
     expenseAmount.innerHTML = `<small>R$</small>${newExpense.amount.toUpperCase().replace("R$", "")}`
 
+    // botão de remover
+    const removeIcon = document.createElement('img')
+    removeIcon.setAttribute("src", "./img/remove.svg")
+    removeIcon.setAttribute("alt", "remover")
+    removeIcon.classList.add("remove-icon")
+
     expenseInfo.append(expenseName, expenseCategory)
 
-    expenseItem.append(expenseIcon, expenseInfo, expenseAmount)
+    expenseItem.append(expenseIcon, expenseInfo, expenseAmount, removeIcon)
     expenseList.append(expenseItem)
 
   } catch (error) {
