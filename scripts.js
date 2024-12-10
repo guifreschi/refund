@@ -107,7 +107,7 @@ function updateTotals() {
     // Percorre os itens da lista
     for (let item = 0; item < items.length; item++) {
       const itemAmount = items[item].querySelector('.expense-amount')
-      let value = itemAmount.textContent.replace(/[^\d]/g, "").replace(",", ".")
+      let value = itemAmount.textContent.replace(/[^\d,]/g, "").replace(",", ".")
 
       value = parseFloat(value)
       if (isNaN(value)) {
@@ -117,7 +117,14 @@ function updateTotals() {
       total += Number(value)
     }
 
-    expensesTotal.textContent = total
+    // Cria a small para adicionar o R$ formatado
+    const sybolBRL = document.createElement('small')
+    sybolBRL.textContent = "R$"
+
+    // Formata o valor
+    total = formatCurrencyBRL(total).toUpperCase().replace("R$", "")
+    expensesTotal.innerHTML = ""
+    expensesTotal.append(sybolBRL, total)
 
   } catch (error) {
     console.log(error)
