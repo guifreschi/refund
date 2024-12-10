@@ -136,6 +136,10 @@ function updateTotals() {
 expenseList.addEventListener("click", function(event){
   // Verifica se o elemento clicado é o ícone
   if (event.target.classList.contains("remove-icon")) {
-    console.log(event)
+    // Obtem a li pai do elemento clicado
+    const item = event.target.closest(".expense")
+    
+    item.remove()
   }
+  updateTotals()
 })
